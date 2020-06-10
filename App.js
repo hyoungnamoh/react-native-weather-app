@@ -1,19 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState, Fragment } from 'react';
+import { StyleSheet, Text, View, Alert } from 'react-native';
+import Loading from './Loading';
+import * as Location from 'expo-location';
 
-export default function App() {
+const App = () => {
+  const [isLoading, setIseLoading] = useState(true);
+
+  useEffect(() => {
+    getLocation();
+  }, [])
+
+  const getLocation = async () => {
+    try {
+      await Location.requestPermissionsAsync();
+      const {coords} = await Location.getCurrentPositionAsync();
+      setIseLoading(false);
+      console.log(coords.latitude, coords.longitude);
+    } catch (error) {
+      Alert.alert('사용자 권한 에러', error);
+    }
+    
+  }
   return (
-    <View style={styles.container}>
-      <Text>Hello world!</Text>
-    </View>
+    isLoading && <Loading/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
