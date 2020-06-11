@@ -14,19 +14,19 @@ const App = () => {
   }, [])
 
   const getWeather = async (latitude, longitude) => {
-    const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=-${longitude}&appid=${API_KEY}`);
+    const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`);  
     console.log(data);
   }
   const getLocation = async () => {
     try {
       await Location.requestPermissionsAsync();
       const {coords} = await Location.getCurrentPositionAsync();
+      // alert(coords.longitude);
       // setIseLoading(false);
       getWeather(coords.latitude, coords.longitude);
     } catch (error) {
       Alert.alert('사용자 권한 에러', error);
     }
-    
   }
   return (
     isLoading && <Loading/>
