@@ -1,21 +1,66 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, StatusBar } from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
+import {LinearGradient} from 'expo-linear-gradient';
 
-const Weather = ({temp}) => {
+const weatherOptions = {
+    Haze: {
+        iconName: "weather-hail",
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Clear: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Clouds: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Thunderstorm: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Drizzle: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Rain: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Snow: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Atomsphere: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Mist: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+    Dust: {
+        iconName: 'weather-hail',
+        gradient: ['#4da0b0', '#d39d38'],
+    },
+}
+
+const Weather = ({temp, condition}) => {
+    console.log('condition', condition);
     return (
-        <View style={styles.container}>
+        <LinearGradient colors={weatherOptions[condition].gradient} style={styles.container}>
+            <StatusBar barStyle='light-content'/>
             <View style={styles.halfContainer}>
+                <MaterialCommunityIcons name={weatherOptions[condition].iconName} size={96} color="white" />
                 <Text style={styles.temp}>
-                    <MaterialCommunityIcons name="weather-lightning-rainy" size={96} color="black" />
                     {temp}
                 </Text>
             </View>
             <View style={styles.halfContainer}>
-
             </View>
-        </View>
+        </LinearGradient>
     )
 }
 
@@ -48,6 +93,7 @@ const styles = StyleSheet.create({
     },
     temp: {
         fontSize: 42,
+        color: 'white'
     }
 });
     
