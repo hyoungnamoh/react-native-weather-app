@@ -1,1 +1,6 @@
 node_modules
+web-build
+expo-linear-gradient
+.expo
+package-lock.json
+expo-location
