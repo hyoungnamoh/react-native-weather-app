@@ -8,18 +8,20 @@ const weatherOptions = {
     Haze: {
         iconName: "weather-hail",
         gradient: ['#4da0b0', '#d39d38'],
+        title: 'Haze',
+        subtitle: "Just don't go outside",
     },
     Clear: {
         iconName: 'weather-hail',
-        gradient: ['#4da0b0', '#d39d38'],
+        gradient: ['#FF7300', '#FEF253'],
     },
     Clouds: {
         iconName: 'weather-hail',
-        gradient: ['#4da0b0', '#d39d38'],
+        gradient: ['#D7DECC', '#304352'],
     },
     Thunderstorm: {
         iconName: 'weather-hail',
-        gradient: ['#4da0b0', '#d39d38'],
+        gradient: ['#373B44', '#4286F4'],
     },
     Drizzle: {
         iconName: 'weather-hail',
@@ -58,7 +60,13 @@ const Weather = ({temp, condition}) => {
                     {temp}
                 </Text>
             </View>
-            <View style={styles.halfContainer}>
+            <View style={{...styles.halfContainer, ...styles.textContainer}}>
+                <Text style={styles.title}>
+                    {weatherOptions[condition].title}
+                </Text>
+                <Text style={styles.subTitle}>
+                {weatherOptions[condition].subtitle}
+                </Text>
             </View>
         </LinearGradient>
     )
@@ -94,6 +102,21 @@ const styles = StyleSheet.create({
     temp: {
         fontSize: 42,
         color: 'white'
+    },
+    title: {
+        color: 'white',
+        fontSize: 44,
+        fontWeight: '300',
+        marginBottom: 10,
+    },
+    subTitle: {
+        color: 'white',
+        fontWeight: '600',
+        fontSize: 24,
+    },
+    textContainer: {
+        paddingHorizontal: 20,
+        alignItems: 'flex-start',
     }
 });
     
